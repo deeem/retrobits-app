@@ -1,0 +1,16 @@
+.NavigationItems {
+    list-style-type: none;
+}
+
+.NavigationItem,
+.NavigationItem:visited,
+.NavigationItem:active {
+    display: inline-block;
+    margin: 1em;
+    text-decoration: none;
+    color: #1166b6;
+}
+
+.active {
+    border-bottom: 1px solid burlywood
+}

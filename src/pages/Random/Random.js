@@ -1,7 +1,7 @@
 import React from 'react';
 
-const randomBit = (props) => (
+const random = (props) => (
     <h1>A Random Bit Page</h1>
 );
 
-export default randomBit;
+export default random;

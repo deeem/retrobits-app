@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-import classes from './BitsContainer.module.css';
+import classes from './Explore.module.css';
 
 import BitList from '../../components/Bits/BitList/BitList'
 import BitInfo from '../../components/Bits/BitInfo/BitInfo'
@@ -11,7 +11,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import BitsFilters from '../../components/Bits/BitsFilters/BitsFilters'
 
 
-class BitsContainer extends Component {
+class Explore extends Component {
     state = {
         bits: null,
         bit: null,
@@ -135,7 +135,7 @@ class BitsContainer extends Component {
             : null;
 
         return (
-            <div className={classes.BitsContainer}>
+            <div className={classes.Explore}>
                 <BitsFilters />
 
                 {list}
@@ -161,4 +161,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(BitsContainer);
+export default connect(mapStateToProps)(Explore);

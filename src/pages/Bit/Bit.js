@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import classes from './Bit.module.css';
 import axios from 'axios';
+import BitInfo from '../../components/Bits/BitInfo/BitInfo'
+import Modal from '../../components/UI/Modal/Modal'
 
 class Bit extends Component {
 
     state = {
         bit: null,
+    }
+
+    hideBitModalHandler = () => {
+        this.props.history.push('/');
     }
 
     componentDidMount() {
@@ -19,7 +25,20 @@ class Bit extends Component {
     }
 
     render() {
-        return <h1>A Bit Page</h1>
+
+        let modal = this.state.bit
+            ? <Modal show={this.state.bit.id}>
+                <BitInfo
+                    hide={this.hideBitModalHandler}
+                    bit={this.state.bit} />
+            </Modal>
+            : null;
+
+        return (
+            <div className={classes.Bit}>
+                {modal}
+            </div>
+        )
     }
 }
 export default Bit;

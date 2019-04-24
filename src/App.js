@@ -6,6 +6,7 @@ import Layout from './components/Layout/Layout';
 import Explore from './pages/Explore/Explore';
 import Random from './pages/Random/Random';
 import Add from './pages/Add/Add';
+import Bit from './pages/Bit/Bit';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Switch>
             <Route path="/add" component={Add} />
             <Route path="/random" component={Random} />
+            <Route path="/bit" component={Bit} />
           </Switch>
         </Layout>
       </div>

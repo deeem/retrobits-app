@@ -35,6 +35,35 @@ class Add extends Component {
         }
     }
 
+    handleInputChange = (event, inputID) => {
+        const updatedForm = {
+            ...this.state.form
+        };
+
+        const updatedElement = {
+            ...this.state.form[inputID]
+        }
+
+        updatedElement.value = event.target.value;
+        updatedForm[inputID] = updatedElement;
+
+        this.setState({ form: updatedForm });
+    }
+
+    handleForm = (event) => {
+        event.preventDefault();
+        
+        const formData = {};
+
+        for (let key in this.state.form) {
+            formData[key] = this.state.form[key].value;
+        }
+
+        // axios post goes here...
+        console.log(formData);
+    }
+
+
     render() {
 
         const formElementsArray = [];
@@ -46,13 +75,14 @@ class Add extends Component {
         }
 
         let form = (
-            <form>
+            <form onSubmit={this.handleForm}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
+                        changed={(event) => this.handleInputChange(event, formElement.id)}
                     />
                 ))}
                 <Button btnType="Success">Add new Bit</Button>

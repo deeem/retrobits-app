@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 import classes from './Add.module.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import axios from 'axios';
 
 class Add extends Component {
     state = {
         form: {
+            platforms: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [],
+                },
+                value: '',
+            },
+            games: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [],
+                },
+                value: '',
+            },
             title: {
                 elementType: 'input',
                 elementConfig: {
@@ -31,11 +46,52 @@ class Add extends Component {
                     ]
                 },
                 value: '',
-            }
+            },
         }
     }
 
     handleInputChange = (event, inputID) => {
+
+        this.updateInputValue(event.target.value, inputID);
+
+        if (inputID === 'platforms') {
+            this.fetchSelectOptions('games', 'http://127.0.0.1:8000/api/games?filter[platform]=' + this.state.form.platforms.value);
+        }
+    }
+
+    handleForm = (event) => {
+        event.preventDefault();
+
+        const formData = {};
+
+        for (let key in this.state.form) {
+            formData[key] = this.state.form[key].value;
+        }
+
+        // axios post request goes here...
+        console.log(formData);
+    }
+
+    componentDidMount() {
+        this.fetchSelectOptions('platforms', 'http://127.0.0.1:8000/api/platforms');
+    }
+
+    fetchSelectOptions = (inputID, url) => {
+        
+        axios.get(url)
+            .then(response => {
+                let values = [];
+                values.push({ value: 0, displayValue: '-- select option --'});
+                let options = response.data.data;
+                for (let key in options) {
+                    values.push({ value: options[key].id, displayValue: options[key].title })
+                }
+
+                this.updateSelectOptions(values, inputID);
+            });
+    }
+
+    updateInputValue = (value, inputID) => {
         const updatedForm = {
             ...this.state.form
         };
@@ -44,25 +100,31 @@ class Add extends Component {
             ...this.state.form[inputID]
         }
 
-        updatedElement.value = event.target.value;
+        updatedElement.value = value;
         updatedForm[inputID] = updatedElement;
 
         this.setState({ form: updatedForm });
     }
 
-    handleForm = (event) => {
-        event.preventDefault();
-        
-        const formData = {};
+    updateSelectOptions = (options, inputID) => {
+        const updatedForm = {
+            ...this.state.form
+        };
 
-        for (let key in this.state.form) {
-            formData[key] = this.state.form[key].value;
+        const updatedElement = {
+            ...this.state.form[inputID]
         }
 
-        // axios post goes here...
-        console.log(formData);
-    }
+        const updatedElementConfig = {
+            ...this.state.form[inputID].elementConfig
+        }
 
+        updatedElementConfig.options = options;
+        updatedElement.elementConfig = updatedElementConfig;
+        updatedForm[inputID] = updatedElement;
+
+        this.setState({ form: updatedForm });
+    }
 
     render() {
 

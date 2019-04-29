@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Input.module.css';
+import axios from 'axios';
 
 const input = (props) => {
     let inputElement = null;
@@ -22,17 +23,17 @@ const input = (props) => {
         case 'select':
             inputElement = (
                 <select className={classes.InputElement} value={props.value}
-                onChange={props.changed}>
-                    {props.elementConfig.options.map(option =>
-                        <option key={option.value} value={option.value}>{option.displayValue}</option>
-
-                    )}
+                    onChange={props.changed}>
+                    {
+                        props.elementConfig.options.map(option =>
+                            <option key={option.value} value={option.value}>{option.displayValue}</option>)
+                    }
                 </select>)
             break;
 
         default:
             inputElement = <input className={classes.InputElement}
-            onChange={props.changed}
+                onChange={props.changed}
                 {...props.elementConfig}
                 value={props.value} />
             break;

@@ -13,6 +13,9 @@ class Add extends Component {
                     options: [],
                 },
                 value: '',
+                validation: {},
+                valid: false,
+                touched: false,
             },
             games: {
                 elementType: 'select',
@@ -20,6 +23,9 @@ class Add extends Component {
                     options: [],
                 },
                 value: '',
+                validation: {},
+                valid: false,
+                touched: false,
             },
             title: {
                 elementType: 'input',
@@ -28,6 +34,11 @@ class Add extends Component {
                     placeholder: 'Bit Title',
                 },
                 value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false,
             },
             description: {
                 elementType: 'input',
@@ -36,6 +47,11 @@ class Add extends Component {
                     placeholder: 'Description',
                 },
                 value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false,
             },
             players: {
                 elementType: 'select',
@@ -45,15 +61,20 @@ class Add extends Component {
                         { value: 2, displayValue: '2' },
                     ]
                 },
-                value: '',
+                value: 1,
+                validation: {},
+                valid: true,
+                touched: false,
             },
-        }
+        },
+        formIsValid: false,
     }
 
     handleInputChange = (event, inputID) => {
 
         this.updateInputValue(event.target.value, inputID);
 
+        // fetch games for selected platform
         if (inputID === 'platforms') {
             this.fetchSelectOptions('games', 'http://127.0.0.1:8000/api/games?filter[platform]=' + this.state.form.platforms.value);
         }
@@ -77,11 +98,11 @@ class Add extends Component {
     }
 
     fetchSelectOptions = (inputID, url) => {
-        
+
         axios.get(url)
             .then(response => {
                 let values = [];
-                values.push({ value: 0, displayValue: '-- select option --'});
+                values.push({ value: 0, displayValue: '-- select option --' });
                 let options = response.data.data;
                 for (let key in options) {
                     values.push({ value: options[key].id, displayValue: options[key].title })
@@ -101,9 +122,16 @@ class Add extends Component {
         }
 
         updatedElement.value = value;
+        updatedElement.valid = this.checkValidity(updatedElement.value, updatedElement.validation);
+        updatedElement.touched = true;
         updatedForm[inputID] = updatedElement;
 
-        this.setState({ form: updatedForm });
+        let formIsValid = true;
+        for (let inputIdentifier in updatedForm) {
+            formIsValid = updatedForm[inputIdentifier].valid && formIsValid;
+        }
+
+        this.setState({ form: updatedForm, formIsValid });
     }
 
     updateSelectOptions = (options, inputID) => {
@@ -126,6 +154,28 @@ class Add extends Component {
         this.setState({ form: updatedForm });
     }
 
+    checkValidity(value, rules) {
+        let isValid = true;
+
+        if (!rules) {
+            return true;
+        }
+
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+
+        return isValid;
+    }
+
     render() {
 
         const formElementsArray = [];
@@ -145,9 +195,12 @@ class Add extends Component {
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
                         changed={(event) => this.handleInputChange(event, formElement.id)}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
                     />
                 ))}
-                <Button btnType="Success">Add new Bit</Button>
+                <Button btnType="Success" disabled={!this.state.formIsValid}>Add new Bit</Button>
             </form>
         );
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './Add.module.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import axios from 'axios';
+import axios from '../../axios-retrobits';
 
 class Add extends Component {
     state = {
@@ -76,7 +76,7 @@ class Add extends Component {
 
         // fetch games for selected platform
         if (inputID === 'platforms') {
-            this.fetchSelectOptions('games', 'http://127.0.0.1:8000/api/games?filter[platform]=' + this.state.form.platforms.value);
+            this.fetchSelectOptions('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
         }
     }
 
@@ -94,7 +94,7 @@ class Add extends Component {
     }
 
     componentDidMount() {
-        this.fetchSelectOptions('platforms', 'http://127.0.0.1:8000/api/platforms');
+        this.fetchSelectOptions('platforms', '/api/platforms');
     }
 
     fetchSelectOptions = (inputID, url) => {

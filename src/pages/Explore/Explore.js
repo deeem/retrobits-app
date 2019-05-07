@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+import axios from '../../axios-retrobits';
 import { connect } from 'react-redux';
 
 import classes from './Explore.module.css';
@@ -97,7 +97,7 @@ class Explore extends Component {
     }
 
     fetchBits = () => {
-        axios.get('http://127.0.0.1:8000/api/bits', {
+        axios.get('/api/bits', {
             params: this.prepareFetchFilterParams()
         }).then(response => {
             this.setState({ bits: response.data.data });
@@ -108,7 +108,7 @@ class Explore extends Component {
     showBitModalHandler = (id) => {
         this.setState({ loading: true });
 
-        axios.get('http://127.0.0.1:8000/api/bits/' + id)
+        axios.get('/api/bits/' + id)
             .then(response => {
                 this.setState({ bit: response.data.data })
             });

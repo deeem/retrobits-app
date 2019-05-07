@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Bit.module.css';
-import axios from 'axios';
+import axios from '../../axios-retrobits';
 import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
 
@@ -17,7 +17,7 @@ class Bit extends Component {
     componentDidMount() {
         const id = new URLSearchParams(this.props.location.search).get('id')
 
-        axios.get('http://127.0.0.1:8000/api/bits/' + id)
+        axios.get('/api/bits/' + id)
             .then(response => {
                 this.setState({ bit: response.data.data });
                 console.log(response.data.data);

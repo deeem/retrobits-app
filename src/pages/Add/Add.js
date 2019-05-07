@@ -3,6 +3,7 @@ import classes from './Add.module.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios-retrobits';
+import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
 
 class Add extends Component {
     state = {
@@ -109,6 +110,9 @@ class Add extends Component {
                 }
 
                 this.updateSelectOptions(values, inputID);
+            })
+            .catch(error => {
+                console.error(error);
             });
     }
 
@@ -213,4 +217,4 @@ class Add extends Component {
     }
 }
 
-export default Add;
+export default withErrorHandler(Add, axios);

@@ -3,6 +3,7 @@ import classes from './Bit.module.css';
 import axios from '../../axios-retrobits';
 import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
+import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
 
 class Bit extends Component {
 
@@ -21,6 +22,9 @@ class Bit extends Component {
             .then(response => {
                 this.setState({ bit: response.data.data });
                 console.log(response.data.data);
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
@@ -41,4 +45,5 @@ class Bit extends Component {
         )
     }
 }
-export default Bit;
+
+export default withErrorHandler(Bit, axios);

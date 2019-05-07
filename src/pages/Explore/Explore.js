@@ -102,7 +102,9 @@ class Explore extends Component {
             params: this.prepareFetchFilterParams()
         }).then(response => {
             this.setState({ bits: response.data.data });
-        });
+        }).catch(error => {
+            console.error(error);
+        })
     }
 
 
@@ -164,5 +166,4 @@ const mapStateToProps = state => {
     }
 }
 
-// export default connect(mapStateToProps)(withErrorHandler(Explore, axios));
-export default connect(mapStateToProps)(Explore);
+export default connect(mapStateToProps)(withErrorHandler(Explore, axios));

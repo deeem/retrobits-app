@@ -20,8 +20,6 @@ class Explore extends Component {
     }
 
     componentDidMount() {
-        this.setState({ loading: true });
-
         this.fetchBits();
     }
 
@@ -98,22 +96,26 @@ class Explore extends Component {
     }
 
     fetchBits = () => {
+        this.setState({ loading: true });
+
         axios.get('/api/bits', {
             params: this.prepareFetchFilterParams()
         }).then(response => {
-            this.setState({ bits: response.data.data });
+            this.setState({ bits: response.data.data, loading: false });
         }).catch(error => {
-            console.error(error);
+            this.setState({ loading: false });
         })
     }
-
 
     showBitModalHandler = (id) => {
         this.setState({ loading: true });
 
         axios.get('/api/bits/' + id)
             .then(response => {
-                this.setState({ bit: response.data.data })
+                this.setState({ bit: response.data.data, loading: false })
+            })
+            .catch(error => {
+                this.setState({ loading: false });
             });
     }
 
@@ -122,6 +124,10 @@ class Explore extends Component {
     }
 
     render() {
+
+        let spinner = this.state.loading
+            ? <Spinner />
+            : null;
 
         let list = this.state.bits
             ? <BitList
@@ -142,6 +148,8 @@ class Explore extends Component {
         return (
             <div className={classes.Explore}>
                 <BitsFilters />
+
+                {spinner}
 
                 {list}
 

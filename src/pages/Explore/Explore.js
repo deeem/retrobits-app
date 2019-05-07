@@ -9,6 +9,7 @@ import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import BitsFilters from '../../components/Bits/BitsFilters/BitsFilters'
+import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
 
 
 class Explore extends Component {
@@ -127,7 +128,9 @@ class Explore extends Component {
             : null;
 
         let modal = this.state.bit
-            ? <Modal show={this.state.bit.id}>
+            ? <Modal
+                show={this.state.bit.id}
+                modalClosed={this.hideBitModalHandler}>
                 <BitInfo
                     hide={this.hideBitModalHandler}
                     bit={this.state.bit} />
@@ -161,4 +164,5 @@ const mapStateToProps = state => {
     }
 }
 
+// export default connect(mapStateToProps)(withErrorHandler(Explore, axios));
 export default connect(mapStateToProps)(Explore);

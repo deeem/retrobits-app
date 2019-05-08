@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes';
+
 const initialState = {
     filter_players_1: false,
     filter_players_2: false,
@@ -12,16 +14,16 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.TOGGLE_FILTER:
+            return {
+                ...state,
+                [action.filter]: !state[action.filter]
+            }
 
-    if (action.type === 'TOGGLE_FILTER') {
-        console.log(action);
-        return {
-            ...state,
-            [action.filter]: ! state[action.filter]
-        }
+        default:
+            return state;
     }
-
-    return state;
 };
 
 export default reducer;

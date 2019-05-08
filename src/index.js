@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
-import { createStore } from 'redux';
+import bitsFilterReducer from './store/reducers/bitsFilter';
 
 import './index.css';
 import App from './App';
 
+const rootReducer = combineReducers({
+    bitsFilter: bitsFilterReducer,
+})
+
 const store = createStore(
-    reducer,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

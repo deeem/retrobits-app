@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './BitsFilters.module.css';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 class bitsFilters extends Component {
     // state = {
@@ -18,9 +19,9 @@ class bitsFilters extends Component {
     // }
 
     // todo: remove it not needed already
-    handleChangeCheckbox = (event) => {
-        this.setState({[event.target.name]: ! this.state[event.target.name]});
-    }
+    // handleChangeCheckbox = (event) => {
+    //     this.setState({[event.target.name]: ! this.state[event.target.name]});
+    // }
 
     render() {
         return (
@@ -53,22 +54,22 @@ class bitsFilters extends Component {
 
 const mapStateToProps = state => {
     return {
-        filter_players_1: state.players1,
-        filter_players_2: state.players2,
-        filter_difficult_easy: state.difficult_easy,
-        filter_difficult_normal: state.difficult_normal,
-        filter_difficult_hard: state.difficult_hard,
-        filter_rating_1: state.rating_1,
-        filter_rating_2: state.rating_2,
-        filter_rating_3: state.rating_3,
-        filter_rating_4: state.rating_4,
-        filter_rating_5: state.filter_rating_5,
+        filter_players_1: state.bitsFilter.players1,
+        filter_players_2: state.bitsFilter.players2,
+        filter_difficult_easy: state.bitsFilter.difficult_easy,
+        filter_difficult_normal: state.bitsFilter.difficult_normal,
+        filter_difficult_hard: state.bitsFilter.difficult_hard,
+        filter_rating_1: state.bitsFilter.rating_1,
+        filter_rating_2: state.bitsFilter.rating_2,
+        filter_rating_3: state.bitsFilter.rating_3,
+        filter_rating_4: state.bitsFilter.rating_4,
+        filter_rating_5: state.bitsFilter.filter_rating_5,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onToggleFilter: (filter) => dispatch({type:'TOGGLE_FILTER', filter }),
+        onToggleFilter: (filter) => dispatch(actions.toggleFilter(filter)),
     }
 }
 

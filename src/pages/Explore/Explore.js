@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import axios from '../../axios-retrobits';
 import { connect } from 'react-redux';
 
 import classes from './Explore.module.css';
-
+import axios from '../../axios-retrobits';
 import BitList from '../../components/Bits/BitList/BitList'
 import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
@@ -161,16 +160,16 @@ class Explore extends Component {
 
 const mapStateToProps = state => {
     return {
-        filter_players_1: state.filter_players_1,
-        filter_players_2: state.filter_players_2,
-        filter_difficult_easy: state.filter_difficult_easy,
-        filter_difficult_normal: state.filter_difficult_normal,
-        filter_difficult_hard: state.filter_difficult_hard,
-        filter_rating_1: state.filter_rating_1,
-        filter_rating_2: state.filter_rating_2,
-        filter_rating_3: state.filter_rating_3,
-        filter_rating_4: state.filter_rating_4,
-        filter_rating_5: state.filter_rating_5,
+        filter_players_1: state.bitsFilter.filter_players_1,
+        filter_players_2: state.bitsFilter.filter_players_2,
+        filter_difficult_easy: state.bitsFilter.filter_difficult_easy,
+        filter_difficult_normal: state.bitsFilter.filter_difficult_normal,
+        filter_difficult_hard: state.bitsFilter.filter_difficult_hard,
+        filter_rating_1: state.bitsFilter.filter_rating_1,
+        filter_rating_2: state.bitsFilter.filter_rating_2,
+        filter_rating_3: state.bitsFilter.filter_rating_3,
+        filter_rating_4: state.bitsFilter.filter_rating_4,
+        filter_rating_5: state.bitsFilter.filter_rating_5,
     }
 }
 

@@ -8,6 +8,7 @@ const navigation = () => {
             <NavLink exact to='/' activeClassName={classes.active} className={classes.NavigationItem}>Browse</NavLink>
             <NavLink exact to='/random' activeClassName={classes.active} className={classes.NavigationItem}>Random</NavLink>
             <NavLink exact to='/add' activeClassName={classes.active} className={classes.NavigationItem}>Add</NavLink>
+            <NavLink exact to='/auth' activeClassName={classes.active} className={classes.NavigationItem}>Auth</NavLink>
         </ul>
     );
 }

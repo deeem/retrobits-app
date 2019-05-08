@@ -7,6 +7,7 @@ import Explore from './pages/Explore/Explore';
 import Random from './pages/Random/Random';
 import Add from './pages/Add/Add';
 import Bit from './pages/Bit/Bit';
+import Auth from './pages/Auth/Auth';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/add" component={Add} />
             <Route path="/random" component={Random} />
             <Route path="/bit" component={Bit} />
+            <Route path="/auth" component={Auth} />
           </Switch>
         </Layout>
       </div>

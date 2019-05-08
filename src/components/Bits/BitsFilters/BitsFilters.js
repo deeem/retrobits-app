@@ -5,43 +5,26 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
 class bitsFilters extends Component {
-    // state = {
-    //     players1: false,
-    //     players2: false,
-    //     difficult_easy: false,
-    //     difficult_normal: false,
-    //     difficult_hard: false,
-    //     rating_1: false,
-    //     rating_2: false,
-    //     rating_3: false,
-    //     rating_4: false,
-    //     rating_5: false,
-    // }
-
-    // todo: remove it not needed already
-    // handleChangeCheckbox = (event) => {
-    //     this.setState({[event.target.name]: ! this.state[event.target.name]});
-    // }
 
     render() {
         return (
             <div className={classes.BitsFilters}>
             
                 <h2>Players</h2>
-                <Checkbox name="players1" value="1" changed={() => this.props.onToggleFilter('filter_players_1')}/>
-                <Checkbox name="players2" value="2" changed={() => this.props.onToggleFilter('filter_players_2')}/>
+                <Checkbox name="players1" value="1" changed={() => this.props.onToggleFilter('players_1')}/>
+                <Checkbox name="players2" value="2" changed={() => this.props.onToggleFilter('players_2')}/>
     
                 <h2>Difficult</h2>
-                <Checkbox name="difficult_easy" value="easy" changed={() => this.props.onToggleFilter('filter_difficult_easy')}/>
-                <Checkbox name="difficult_normal" value="normal" changed={() => this.props.onToggleFilter('filter_difficult_normal')}/>
-                <Checkbox name="difficult_hard" value="hard" changed={() => this.props.onToggleFilter('filter_difficult_hard')}/>
+                <Checkbox name="difficult_easy" value="easy" changed={() => this.props.onToggleFilter('difficult_easy')}/>
+                <Checkbox name="difficult_normal" value="normal" changed={() => this.props.onToggleFilter('difficult_normal')}/>
+                <Checkbox name="difficult_hard" value="hard" changed={() => this.props.onToggleFilter('difficult_hard')}/>
     
                 <h2>Rating</h2>
-                <Checkbox name="rating_1" value="1" changed={() => this.props.onToggleFilter('filter_rating_1')}/>
-                <Checkbox name="rating_2" value="2" changed={() => this.props.onToggleFilter('filter_rating_2')}/>
-                <Checkbox name="rating_3" value="3" changed={() => this.props.onToggleFilter('filter_rating_3')}/>
-                <Checkbox name="rating_4" value="4" changed={() => this.props.onToggleFilter('filter_rating_4')}/>
-                <Checkbox name="rating_5" value="5" changed={() => this.props.onToggleFilter('filter_rating_5')}/>
+                <Checkbox name="rating_1" value="1" changed={() => this.props.onToggleFilter('rating_1')}/>
+                <Checkbox name="rating_2" value="2" changed={() => this.props.onToggleFilter('rating_2')}/>
+                <Checkbox name="rating_3" value="3" changed={() => this.props.onToggleFilter('rating_3')}/>
+                <Checkbox name="rating_4" value="4" changed={() => this.props.onToggleFilter('rating_4')}/>
+                <Checkbox name="rating_5" value="5" changed={() => this.props.onToggleFilter('rating_5')}/>
     
                 <h2>Order by</h2>
                 <input type="checkbox" value="" />recently added<br />
@@ -54,16 +37,16 @@ class bitsFilters extends Component {
 
 const mapStateToProps = state => {
     return {
-        filter_players_1: state.bitsFilter.players1,
-        filter_players_2: state.bitsFilter.players2,
-        filter_difficult_easy: state.bitsFilter.difficult_easy,
-        filter_difficult_normal: state.bitsFilter.difficult_normal,
-        filter_difficult_hard: state.bitsFilter.difficult_hard,
-        filter_rating_1: state.bitsFilter.rating_1,
-        filter_rating_2: state.bitsFilter.rating_2,
-        filter_rating_3: state.bitsFilter.rating_3,
-        filter_rating_4: state.bitsFilter.rating_4,
-        filter_rating_5: state.bitsFilter.filter_rating_5,
+        players_1: state.bitsFilter.players1,
+        players_2: state.bitsFilter.players2,
+        difficult_easy: state.bitsFilter.difficult_easy,
+        difficult_normal: state.bitsFilter.difficult_normal,
+        difficult_hard: state.bitsFilter.difficult_hard,
+        rating_1: state.bitsFilter.rating_1,
+        rating_2: state.bitsFilter.rating_2,
+        rating_3: state.bitsFilter.rating_3,
+        rating_4: state.bitsFilter.rating_4,
+        rating_5: state.bitsFilter.rating_5,
     }
 }
 

@@ -1,16 +1,16 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    filter_players_1: false,
-    filter_players_2: false,
-    filter_difficult_easy: false,
-    filter_difficult_normal: false,
-    filter_difficult_hard: false,
-    filter_rating_1: false,
-    filter_rating_2: false,
-    filter_rating_3: false,
-    filter_rating_4: false,
-    filter_rating_5: false,
+    players_1: false,
+    players_2: false,
+    difficult_easy: false,
+    difficult_normal: false,
+    difficult_hard: false,
+    rating_1: false,
+    rating_2: false,
+    rating_3: false,
+    rating_4: false,
+    rating_5: false,
 };
 
 const reducer = (state = initialState, action) => {

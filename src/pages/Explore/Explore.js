@@ -25,16 +25,16 @@ class Explore extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
 
         const shouldFetch =
-            (prevProps.filter_players_1 !== undefined && prevProps.filter_players_1 !== this.props.filter_players_1)
-            || (prevProps.filter_players_2 !== undefined && prevProps.filter_players_2 !== this.props.filter_players_2)
-            || (prevProps.filter_difficult_easy !== undefined && prevProps.filter_difficult_easy !== this.props.filter_difficult_easy)
-            || (prevProps.filter_difficult_normal !== undefined && prevProps.filter_difficult_normal !== this.props.filter_difficult_normal)
-            || (prevProps.filter_difficult_hard !== undefined && prevProps.filter_difficult_hard !== this.props.filter_difficult_hard)
-            || (prevProps.filter_rating_1 !== undefined && prevProps.filter_rating_1 !== this.props.filter_rating_1)
-            || (prevProps.filter_rating_2 !== undefined && prevProps.filter_rating_2 !== this.props.filter_rating_2)
-            || (prevProps.filter_rating_3 !== undefined && prevProps.filter_rating_3 !== this.props.filter_rating_3)
-            || (prevProps.filter_rating_4 !== undefined && prevProps.filter_rating_4 !== this.props.filter_rating_4)
-            || (prevProps.filter_rating_5 !== undefined && prevProps.filter_rating_5 !== this.props.filter_rating_5);
+            (prevProps.players_1 !== undefined && prevProps.players_1 !== this.props.players_1)
+            || (prevProps.players_2 !== undefined && prevProps.players_2 !== this.props.players_2)
+            || (prevProps.difficult_easy !== undefined && prevProps.difficult_easy !== this.props.difficult_easy)
+            || (prevProps.difficult_normal !== undefined && prevProps.difficult_normal !== this.props.difficult_normal)
+            || (prevProps.difficult_hard !== undefined && prevProps.difficult_hard !== this.props.difficult_hard)
+            || (prevProps.rating_1 !== undefined && prevProps.rating_1 !== this.props.rating_1)
+            || (prevProps.rating_2 !== undefined && prevProps.rating_2 !== this.props.rating_2)
+            || (prevProps.rating_3 !== undefined && prevProps.rating_3 !== this.props.rating_3)
+            || (prevProps.rating_4 !== undefined && prevProps.rating_4 !== this.props.rating_4)
+            || (prevProps.rating_5 !== undefined && prevProps.rating_5 !== this.props.rating_5);
 
         if (shouldFetch) {
             this.fetchBits();
@@ -46,34 +46,34 @@ class Explore extends Component {
         const difficults = [];
         const ratings = [];
 
-        if (this.props.filter_players_1) {
+        if (this.props.players_1) {
             players.push(1);
         }
-        if (this.props.filter_players_2) {
+        if (this.props.players_2) {
             players.push(2);
         }
-        if (this.props.filter_difficult_easy) {
+        if (this.props.difficult_easy) {
             difficults.push('easy');
         }
-        if (this.props.filter_difficult_normal) {
+        if (this.props.difficult_normal) {
             difficults.push('normal');
         }
-        if (this.props.filter_difficult_hard) {
+        if (this.props.difficult_hard) {
             difficults.push('hard');
         }
-        if (this.props.filter_rating_1) {
+        if (this.props.rating_1) {
             ratings.push(1);
         }
-        if (this.props.filter_rating_2) {
+        if (this.props.rating_2) {
             ratings.push(2);
         }
-        if (this.props.filter_rating_3) {
+        if (this.props.rating_3) {
             ratings.push(3);
         }
-        if (this.props.filter_rating_4) {
+        if (this.props.rating_4) {
             ratings.push(4);
         }
-        if (this.props.filter_rating_5) {
+        if (this.props.rating_5) {
             ratings.push(5);
         }
 
@@ -160,16 +160,16 @@ class Explore extends Component {
 
 const mapStateToProps = state => {
     return {
-        filter_players_1: state.bitsFilter.filter_players_1,
-        filter_players_2: state.bitsFilter.filter_players_2,
-        filter_difficult_easy: state.bitsFilter.filter_difficult_easy,
-        filter_difficult_normal: state.bitsFilter.filter_difficult_normal,
-        filter_difficult_hard: state.bitsFilter.filter_difficult_hard,
-        filter_rating_1: state.bitsFilter.filter_rating_1,
-        filter_rating_2: state.bitsFilter.filter_rating_2,
-        filter_rating_3: state.bitsFilter.filter_rating_3,
-        filter_rating_4: state.bitsFilter.filter_rating_4,
-        filter_rating_5: state.bitsFilter.filter_rating_5,
+        players_1: state.bitsFilter.players_1,
+        players_2: state.bitsFilter.players_2,
+        difficult_easy: state.bitsFilter.difficult_easy,
+        difficult_normal: state.bitsFilter.difficult_normal,
+        difficult_hard: state.bitsFilter.difficult_hard,
+        rating_1: state.bitsFilter.rating_1,
+        rating_2: state.bitsFilter.rating_2,
+        rating_3: state.bitsFilter.rating_3,
+        rating_4: state.bitsFilter.rating_4,
+        rating_5: state.bitsFilter.rating_5,
     }
 }
 

@@ -103,6 +103,12 @@ class Auth extends Component {
         this.props.onAuth(this.state.controls.name.value, this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
 
+    switchAuthMode = () => {
+        this.setState(prevState => {
+            return { isSignup: !prevState.isSignup }
+        })
+    }
+
     render() {
         const formElementsArray = [];
         for (let key in this.state.controls) {

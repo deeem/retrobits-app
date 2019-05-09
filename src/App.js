@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -10,8 +10,13 @@ import Add from './pages/Add/Add';
 import Bit from './pages/Bit/Bit';
 import Auth from './pages/Auth/Auth';
 import Logout from './pages/Logout/Logout';
+import * as actions from './store/actions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onTryAutoSingup();
+  }
+
   render() {
 
     let routes = null;
@@ -54,4 +59,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSingup: () => dispatch(actions.authCheckState()),
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

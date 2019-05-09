@@ -37,6 +37,7 @@ export const auth = (name, email, password, isSignup) => {
 
         axios.post(url, authData)
             .then(response => {
+                localStorage.setItem('token', response.data.token);
                 dispatch(authSuccess(response.data.token));
             })
             .catch(error => {
@@ -47,9 +48,19 @@ export const auth = (name, email, password, isSignup) => {
 
 export const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('expirationTime');
 
     return {
         type: actionTypes.AUTH_LOGOUT
+    }
+}
+
+export const authCheckState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logout());
+        } else {
+            dispatch(authSuccess(token));
+        }
     }
 }

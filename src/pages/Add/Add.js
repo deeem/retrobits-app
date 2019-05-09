@@ -4,6 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios-retrobits';
 import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
+import { validate } from '../../components/UI/Input/utility/utility';
 
 class Add extends Component {
     state = {
@@ -126,7 +127,7 @@ class Add extends Component {
         }
 
         updatedElement.value = value;
-        updatedElement.valid = this.checkValidity(updatedElement.value, updatedElement.validation);
+        updatedElement.valid = validate(updatedElement.value, updatedElement.validation);
         updatedElement.touched = true;
         updatedForm[inputID] = updatedElement;
 
@@ -158,27 +159,6 @@ class Add extends Component {
         this.setState({ form: updatedForm });
     }
 
-    checkValidity(value, rules) {
-        let isValid = true;
-
-        if (!rules) {
-            return true;
-        }
-
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        return isValid;
-    }
 
     render() {
 

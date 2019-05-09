@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './App.css';
 import Layout from './components/Layout/Layout';
@@ -11,20 +12,45 @@ import Auth from './pages/Auth/Auth';
 
 class App extends Component {
   render() {
+
+    let routes = null;
+    if (this.props.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Explore} />
+          <Route path="/add" component={Add} />
+          <Route path="/random" component={Random} />
+          <Route path="/bit" component={Bit} />
+          <Route path="/auth" component={Auth} />
+          <Redirect to={"/"} />
+        </Switch>
+      );
+    } else {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Explore} />
+          <Route path="/random" component={Random} />
+          <Route path="/bit" component={Bit} />
+          <Route path="/auth" component={Auth} />
+          <Redirect to={"/"} />
+        </Switch>
+      );
+    }
+
     return (
       <div className="App">
         <Layout>
-          <Route path="/" exact component={Explore} />
-          <Switch>
-            <Route path="/add" component={Add} />
-            <Route path="/random" component={Random} />
-            <Route path="/bit" component={Bit} />
-            <Route path="/auth" component={Auth} />
-          </Switch>
+          {routes}
         </Layout>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  }
+}
+
+export default connect(mapStateToProps)(App);

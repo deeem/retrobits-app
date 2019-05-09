@@ -11,7 +11,9 @@ class Navigation extends Component {
                 <NavLink exact to='/' activeClassName={classes.active} className={classes.NavigationItem}>Browse</NavLink>
                 <NavLink exact to='/random' activeClassName={classes.active} className={classes.NavigationItem}>Random</NavLink>
                 {this.props.isAuthenticated ? <NavLink exact to='/add' activeClassName={classes.active} className={classes.NavigationItem}>Add</NavLink> : null}
-                <NavLink exact to='/auth' activeClassName={classes.active} className={classes.NavigationItem}>Auth</NavLink>
+                {this.props.isAuthenticated
+                    ? <NavLink exact to="/logout" activeClassName={classes.active} className={classes.NavigationItem}>Logout</NavLink>
+                    : <NavLink exact to="/auth" activeClassName={classes.active} className={classes.NavigationItem}>Log In</NavLink>}
             </ul>
         )
     }

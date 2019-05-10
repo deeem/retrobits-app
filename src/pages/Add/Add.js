@@ -4,7 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios-retrobits';
 import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
-import { validate } from '../../components/UI/Input/utility/utility';
+import { validate, getUpdatedFormState, setSelectControlOptions } from '../../components/UI/Input/utility/utility';
 
 class Add extends Component {
     state = {
@@ -43,7 +43,7 @@ class Add extends Component {
                 touched: false,
             },
             description: {
-                elementType: 'input',
+                elementType: 'textarea',
                 elementConfig: {
                     type: 'text',
                     placeholder: 'Description',
@@ -73,12 +73,11 @@ class Add extends Component {
     }
 
     handleInputChange = (event, inputID) => {
-
-        this.updateInputValue(event.target.value, inputID);
+        this.setState(getUpdatedFormState(this.state, event.target.value, inputID));
 
         // fetch games for selected platform
         if (inputID === 'platforms') {
-            this.fetchSelectOptions('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
+            this.fetchGamesSelectControlOptions('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
         }
     }
 
@@ -99,7 +98,7 @@ class Add extends Component {
         this.fetchSelectOptions('platforms', '/api/platforms');
     }
 
-    fetchSelectOptions = (inputID, url) => {
+    fetchGamesSelectControlOptions = (inputID, url) => {
 
         axios.get(url)
             .then(response => {
@@ -110,53 +109,11 @@ class Add extends Component {
                     values.push({ value: options[key].id, displayValue: options[key].title })
                 }
 
-                this.updateSelectOptions(values, inputID);
+                this.setState(setSelectControlOptions(this.state, values, inputID));
             })
             .catch(error => {
                 console.error(error);
             });
-    }
-
-    updateInputValue = (value, inputID) => {
-        const updatedForm = {
-            ...this.state.form
-        };
-
-        const updatedElement = {
-            ...this.state.form[inputID]
-        }
-
-        updatedElement.value = value;
-        updatedElement.valid = validate(updatedElement.value, updatedElement.validation);
-        updatedElement.touched = true;
-        updatedForm[inputID] = updatedElement;
-
-        let formIsValid = true;
-        for (let inputIdentifier in updatedForm) {
-            formIsValid = updatedForm[inputIdentifier].valid && formIsValid;
-        }
-
-        this.setState({ form: updatedForm, formIsValid });
-    }
-
-    updateSelectOptions = (options, inputID) => {
-        const updatedForm = {
-            ...this.state.form
-        };
-
-        const updatedElement = {
-            ...this.state.form[inputID]
-        }
-
-        const updatedElementConfig = {
-            ...this.state.form[inputID].elementConfig
-        }
-
-        updatedElementConfig.options = options;
-        updatedElement.elementConfig = updatedElementConfig;
-        updatedForm[inputID] = updatedElement;
-
-        this.setState({ form: updatedForm });
     }
 
 

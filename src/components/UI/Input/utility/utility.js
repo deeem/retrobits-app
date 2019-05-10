@@ -19,3 +19,45 @@ export const validate = (value, rules) => {
 
     return isValid;
 }
+
+export const getUpdatedFormState = (state, value, inputID) => {
+    const updatedForm = {
+        ...state.form
+    };
+
+    const updatedElement = {
+        ...state.form[inputID]
+    }
+
+    updatedElement.value = value;
+    updatedElement.valid = validate(updatedElement.value, updatedElement.validation);
+    updatedElement.touched = true;
+    updatedForm[inputID] = updatedElement;
+
+    let formIsValid = true;
+    for (let inputIdentifier in updatedForm) {
+        formIsValid = updatedForm[inputIdentifier].valid && formIsValid;
+    }
+
+    return { form: updatedForm, formIsValid };
+}
+
+export const setSelectControlOptions = (state, options, inputID) => {
+    const updatedForm = {
+        ...state.form
+    };
+
+    const updatedElement = {
+        ...state.form[inputID]
+    }
+
+    const updatedElementConfig = {
+        ...state.form[inputID].elementConfig
+    }
+
+    updatedElementConfig.options = options;
+    updatedElement.elementConfig = updatedElementConfig;
+    updatedForm[inputID] = updatedElement;
+
+    return { form: updatedForm };
+}

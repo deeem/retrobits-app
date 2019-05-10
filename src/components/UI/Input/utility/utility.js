@@ -61,3 +61,17 @@ export const setSelectControlOptions = (state, options, inputID) => {
 
     return { form: updatedForm };
 }
+
+/**
+ * Extract form data from state in key-value format for posting on server
+ * @param {*} state 
+ */
+export const getFormData = (state) => {
+    const formData = {};
+
+    for (let key in state.form) {
+        formData[key] = state.form[key].value;
+    }
+
+    return formData;
+}

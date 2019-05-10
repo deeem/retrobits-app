@@ -4,7 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios-retrobits';
 import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
-import { validate, getUpdatedFormState, setSelectControlOptions } from '../../components/UI/Input/utility/utility';
+import { getUpdatedFormState, setSelectControlOptions, getFormData } from '../../components/UI/Input/utility/utility';
 
 class Add extends Component {
     state = {
@@ -84,22 +84,17 @@ class Add extends Component {
     handleForm = (event) => {
         event.preventDefault();
 
-        const formData = {};
-
-        for (let key in this.state.form) {
-            formData[key] = this.state.form[key].value;
-        }
+        const formData = getFormData(this.state);
 
         // axios post request goes here...
         console.log(formData);
     }
 
     componentDidMount() {
-        this.fetchSelectOptions('platforms', '/api/platforms');
+        this.fetchGamesSelectControlOptions('platforms', '/api/platforms');
     }
 
     fetchGamesSelectControlOptions = (inputID, url) => {
-
         axios.get(url)
             .then(response => {
                 let values = [];
@@ -115,7 +110,6 @@ class Add extends Component {
                 console.error(error);
             });
     }
-
 
     render() {
 

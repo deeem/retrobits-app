@@ -43,8 +43,11 @@ export class Autocomplete extends Component {
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
-      userInput: e.currentTarget.innerText
+      userInput: e.currentTarget.textContent
     });
+
+    // send event on upper level to store in form state
+    this.props.changed(e);
   };
 
   render() {

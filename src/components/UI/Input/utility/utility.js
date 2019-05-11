@@ -70,7 +70,13 @@ export const getFormData = (state) => {
     const formData = {};
 
     for (let key in state.form) {
-        formData[key] = state.form[key].value;
+
+        if (state.form[key].elementType === 'autocomplete') {
+            const found = state.form[key].elementConfig.options.find(option => option.displayValue === state.form[key].value);
+            formData[key] = found.value;
+        } else {
+            formData[key] = state.form[key].value;
+        }
     }
 
     return formData;

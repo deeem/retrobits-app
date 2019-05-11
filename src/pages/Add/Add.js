@@ -68,29 +68,12 @@ class Add extends Component {
                 valid: true,
                 touched: false,
             },
-            suggest: {
-                elementType: 'autocomplete',
-                elementConfig: {
-                    options: [
-                        { value: 1, displayValue: 'Red' },
-                        { value: 2, displayValue: 'White' },
-                        { value: 3, displayValue: 'Black' },
-                        { value: 4, displayValue: 'Green' },
-                        { value: 5, displayValue: 'Blue' },
-                        { value: 6, displayValue: 'Yellow' },
-                    ],
-                },
-                value: '',
-                validation: {},
-                valid: true,
-                touched: false,
-            },
         },
         formIsValid: false,
     }
 
     handleInputChange = (event, inputID) => {
-        this.setState(getUpdatedFormState(this.state, event.target.value, inputID));
+        this.setState(getUpdatedFormState(this.state, event.target.value || event.target.textContent, inputID));
 
         // fetch games for selected platform
         if (inputID === 'platforms') {

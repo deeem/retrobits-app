@@ -20,7 +20,7 @@ class Add extends Component {
                 touched: false,
             },
             games: {
-                elementType: 'select',
+                elementType: 'autocomplete',
                 elementConfig: {
                     options: [],
                 },
@@ -94,7 +94,7 @@ class Add extends Component {
 
         // fetch games for selected platform
         if (inputID === 'platforms') {
-            this.fetchGamesSelectControlOptions('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
+            this.fetchOptionsForControl('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
         }
     }
 
@@ -108,13 +108,14 @@ class Add extends Component {
     }
 
     componentDidMount() {
-        this.fetchGamesSelectControlOptions('platforms', '/api/platforms');
+        this.fetchOptionsForControl('platforms', '/api/platforms');
     }
 
-    fetchGamesSelectControlOptions = (inputID, url) => {
+    fetchOptionsForControl = (inputID, url) => {
         axios.get(url)
             .then(response => {
                 let values = [];
+                // todo: set input value in state instead of creating new option that acts as default
                 values.push({ value: 0, displayValue: '-- select option --' });
                 let options = response.data.data;
                 for (let key in options) {

@@ -63,9 +63,9 @@ export class Autocomplete extends Component {
         suggestionsListComponent = (
           <ul className={classes.suggestions}>
             {filteredSuggestions.map((suggestion, index) => {
-
+              console.log(filteredSuggestions.length);
               return (
-                <li key={suggestion} onClick={onClick}>
+                <li key={String(Math.random())} onClick={onClick}>
                   {suggestion}
                 </li>
               );

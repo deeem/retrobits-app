@@ -34,7 +34,6 @@ const input = (props) => {
                     value={props.value}
                     changed={props.changed}
                     inputClasses={inputClasses}
-
                 />
             )
             break;

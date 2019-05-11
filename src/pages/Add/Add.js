@@ -84,7 +84,7 @@ class Add extends Component {
                 validation: {},
                 valid: true,
                 touched: false,
-            }
+            },
         },
         formIsValid: false,
     }

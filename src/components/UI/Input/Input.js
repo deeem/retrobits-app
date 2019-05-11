@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Input.module.css';
 import Autocomplete from './Autocomplete/Autocomplete';
+import Select from './Select/Select';
 
 const input = (props) => {
     let inputElement = null;
@@ -28,15 +29,15 @@ const input = (props) => {
 
         case 'select':
             inputElement = (
-                <select className={inputClasses.join(' ')} value={props.value}
-                    onChange={props.changed}>
-                    {
-                        props.elementConfig.options.map(option =>
-                            <option key={option.value} value={option.value}>{option.displayValue}</option>)
-                    }
-                </select>)
-            break;
+                <Select
+                    options={props.elementConfig.options}
+                    value={props.value}
+                    changed={props.changed}
+                    inputClasses={inputClasses}
 
+                />
+            )
+            break;
         case 'autocomplete':
             inputElement = (
                 <Autocomplete

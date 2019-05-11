@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classes from './Autocomplete.module.css';
 
 export class Autocomplete extends Component {
   static propTypes = {
@@ -11,7 +12,6 @@ export class Autocomplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
       userInput: this.props.value,
@@ -46,37 +46,12 @@ export class Autocomplete extends Component {
       userInput: e.currentTarget.innerText
     });
   };
-  onKeyDown = e => {
-    const { activeSuggestion, filteredSuggestions } = this.state;
-
-    if (e.keyCode === 13) {
-      this.setState({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion]
-      });
-    } else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
-      }
-
-      this.setState({ activeSuggestion: activeSuggestion - 1 });
-    } else if (e.keyCode === 40) {
-      if (activeSuggestion - 1 === filteredSuggestions.length) {
-        return;
-      }
-
-      this.setState({ activeSuggestion: activeSuggestion + 1 });
-    }
-  };
 
   render() {
     const {
       onChange,
       onClick,
-      onKeyDown,
       state: {
-        activeSuggestion,
         filteredSuggestions,
         showSuggestions,
         userInput
@@ -86,13 +61,8 @@ export class Autocomplete extends Component {
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
-          <ul class="suggestions">
+          <ul className={classes.suggestions}>
             {filteredSuggestions.map((suggestion, index) => {
-              let className;
-
-              if (index === activeSuggestion) {
-                className = "";
-              }
 
               return (
                 <li key={suggestion} onClick={onClick}>
@@ -104,7 +74,7 @@ export class Autocomplete extends Component {
         );
       } else {
         suggestionsListComponent = (
-          <div class="no-suggestions">
+          <div className={classes['no-suggestions']}>
             <em>No suggestions</em>
           </div>
         );
@@ -112,15 +82,15 @@ export class Autocomplete extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         <input
           type="search"
           onChange={onChange}
-          onKeyDown={onKeyDown}
           value={userInput}
+          className={this.props.inputClasses}
         />
         {suggestionsListComponent}
-      </React.Fragment>
+      </>
     );
   }
 }

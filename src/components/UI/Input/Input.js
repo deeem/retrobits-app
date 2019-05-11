@@ -43,6 +43,7 @@ const input = (props) => {
                     suggestions={props.elementConfig.options.map(option => option.displayValue)}
                     value={props.value}
                     changed={props.changed}
+                    inputClasses={inputClasses}
                 />
             );
             break;

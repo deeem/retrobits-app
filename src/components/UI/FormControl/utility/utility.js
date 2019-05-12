@@ -29,7 +29,7 @@ export const validate = (value, rules) => {
     return isValid;
 }
 
-export const getUpdatedFormState = (state, value, inputID) => {
+export const getUpdatedFormState = (state, event, inputID) => {
     const updatedForm = {
         ...state.form
     };
@@ -38,7 +38,7 @@ export const getUpdatedFormState = (state, value, inputID) => {
         ...state.form[inputID]
     }
 
-    updatedElement.value = value;
+    updatedElement.value = getValueFromTarget(state, event, inputID);
     updatedElement.valid = validate(updatedElement.value, updatedElement.validation);
     updatedElement.touched = true;
     updatedForm[inputID] = updatedElement;
@@ -49,6 +49,15 @@ export const getUpdatedFormState = (state, value, inputID) => {
     }
 
     return { form: updatedForm, formIsValid };
+}
+
+const getValueFromTarget = (state, event, inputID) => {
+
+    switch (state.form[inputID].type) {
+        case 'autocomplete': return event.target.textContent;
+        case 'file': return event.target.files[0];
+        default: return event.target.value;
+    }
 }
 
 export const setSelectControlOptions = (state, options, inputID) => {
@@ -71,15 +80,21 @@ export const setSelectControlOptions = (state, options, inputID) => {
  * @param {*} state 
  */
 export const getFormData = (state) => {
-    const formData = {};
+    const formData = new FormData();
 
     for (let key in state.form) {
 
-        if (state.form[key].elementType === 'autocomplete') {
-            const found = state.form[key].elementConfig.options.find(option => option.displayValue === state.form[key].value);
-            formData[key] = found.value;
-        } else {
-            formData[key] = state.form[key].value;
+        switch (state.form[key].type) {
+            case 'autocomplete':
+                const found = state.form[key].options.find(option => option.displayValue === state.form[key].value);
+                formData.append(key, found.value);
+                break;
+
+            case 'file':
+                formData.append(key, state.form[key].value, state.form[key].value.name);
+                
+            default:
+                formData.append(key, state.form[key].value);
         }
     }
 

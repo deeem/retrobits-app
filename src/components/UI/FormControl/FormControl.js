@@ -52,6 +52,7 @@ const formControl = (props) => {
                 />
             )
             break;
+
         case 'autocomplete':
             inputElement = (
                 <Autocomplete
@@ -61,6 +62,14 @@ const formControl = (props) => {
                     inputClasses={inputClasses}
                 />
             );
+            break;
+
+        case 'file':
+            inputElement = (
+                <input type="file" className={inputClasses.join(' ')}
+                onChange={props.changed}
+                />
+            )
             break;
 
         default:

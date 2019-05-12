@@ -36,7 +36,7 @@ class Add extends Component {
                 touched: false,
             },
             description: {
-                type: 'textarea',                 
+                type: 'textarea',
                 placeholder: 'Description',
                 value: '',
                 validation: {
@@ -56,12 +56,19 @@ class Add extends Component {
                 valid: true,
                 touched: false,
             },
+            image: {
+                type: 'file',
+                value: '',
+                validation: {},
+                valid: true,
+                toched: false,
+            }
         },
         formIsValid: false,
     }
 
     handleInputChange = (event, inputID) => {
-        this.setState(getUpdatedFormState(this.state, event.target.value || event.target.textContent, inputID));
+        this.setState(getUpdatedFormState(this.state, event, inputID));
 
         // fetch games for selected platform
         if (inputID === 'platforms') {
@@ -76,6 +83,14 @@ class Add extends Component {
 
         // axios post request goes here...
         console.log(formData);
+
+        axios.post('/api/bits', formData)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     componentDidMount() {
@@ -123,7 +138,7 @@ class Add extends Component {
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
                     />
-                    )
+                )
                 )}
 
                 <Button btnType="Success" disabled={!this.state.formIsValid}>Add new Bit</Button>

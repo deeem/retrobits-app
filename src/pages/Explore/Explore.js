@@ -16,6 +16,8 @@ class Explore extends Component {
         bits: null,
         bit: null,
         loading: false,
+        url: '/api/bits',
+        pagination: [],
     }
 
     componentDidMount() {

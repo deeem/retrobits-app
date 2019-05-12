@@ -1,5 +1,6 @@
 import React from 'react';
 import BitListItem from '../BitListItem/BitListItem';
+import BitsPaginator from '../BitsPaginator/BitsPaginator';
 import classes from './BitList.module.css';
 
 const BitList = (props) => {
@@ -11,8 +12,11 @@ const BitList = (props) => {
     );
 
     return (
-        <div className={classes.BitList}>
-            {list}
+        <div>
+            <BitsPaginator />
+            <div className={classes.BitList}>
+                {list}
+            </div>
         </div>
     )
 }

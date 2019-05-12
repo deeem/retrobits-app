@@ -31,6 +31,7 @@ const formControl = (props) => {
         case 'password':
             inputElement = <input type="password" className={inputClasses.join(' ')}
                 value={props.value}
+                placeholder={props.placeholder}
                 onChange={props.changed} />
             break;
 

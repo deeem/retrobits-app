@@ -101,7 +101,6 @@ class Add extends Component {
     }
 
     render() {
-
         const formElementsArray = [];
         for (let key in this.state.form) {
             formElementsArray.push({
@@ -116,6 +115,7 @@ class Add extends Component {
                     <FormControl
                         key={formElement.id}
                         type={formElement.config.type}
+                        placeholder={formElement.config.placeholder}
                         options={formElement.config.options}
                         value={formElement.config.value}
                         changed={(event) => this.handleInputChange(event, formElement.id)}

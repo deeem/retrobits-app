@@ -8,6 +8,7 @@ import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import BitsFilters from '../../components/Bits/BitsFilters/BitsFilters'
+import BitsPaginator from '../../components/Bits/BitsPaginator/BitsPaginator'
 import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
 
 
@@ -17,7 +18,7 @@ class Explore extends Component {
         bit: null,
         loading: false,
         url: '/api/bits',
-        pagination: [],
+        pagination: {},
     }
 
     componentDidMount() {
@@ -43,7 +44,7 @@ class Explore extends Component {
         }
     }
 
-    prepareFetchFilterParams = () => {
+    prepareFetchFilterParams = (params) => {
         const players = [];
         const difficults = [];
         const ratings = [];
@@ -93,19 +94,39 @@ class Explore extends Component {
             filters['filter[rating]'] = ratings.join(',');
         }
 
-        return filters;
+        return {
+            ...filters,
+            ...params
+        }
     }
 
-    fetchBits = () => {
+    fetchBits = (params) => {
         this.setState({ loading: true });
 
         axios.get('/api/bits', {
-            params: this.prepareFetchFilterParams()
+            params: this.prepareFetchFilterParams(params)
         }).then(response => {
-            this.setState({ bits: response.data.data, loading: false });
+            this.setState({
+                bits: response.data.data,
+                loading: false,
+                pagination: {
+                    current: response.data.meta.current_page,
+                    first: response.data.links.first,
+                    last: response.data.links.last,
+                    next: response.data.links.next,
+                    prev: response.data.links.prev,
+                }
+            });
         }).catch(error => {
             this.setState({ loading: false });
         })
+    }
+
+    handlePaginate = (url) => {
+        if (url) {
+            const page = new URL(url).searchParams.get('page');
+            this.fetchBits({ page });
+        }
     }
 
     showBitModalHandler = (id) => {
@@ -150,9 +171,21 @@ class Explore extends Component {
             <div className={classes.Explore}>
                 <BitsFilters />
 
-                {spinner}
-
-                {list}
+                <div className={classes.BitListWrapper}>
+                    <div className={classes.PaginatorContainer}>
+                        <BitsPaginator
+                            current={this.state.pagination.current}
+                            clickedFirst={() => this.handlePaginate(this.state.pagination.first)}
+                            clickedLast={() => this.handlePaginate(this.state.pagination.last)}
+                            clickedNext={() => this.handlePaginate(this.state.pagination.next)}
+                            clickedPrev={() => this.handlePaginate(this.state.pagination.prev)}
+                        />
+                    </div>
+                    <div className={classes.BitListContainer}>
+                        {spinner}
+                        {list}
+                    </div>
+                </div>
 
                 {modal}
             </div>

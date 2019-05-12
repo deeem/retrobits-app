@@ -1,3 +1,11 @@
 .Explore {
     display: flex;
 }
+
+.BitListWrapper {
+    
+}
+
+.PaginatorContainer {
+    background-color: lavender
+}

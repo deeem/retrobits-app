@@ -9,7 +9,7 @@ import { getUpdatedFormState, setSelectControlOptions, getFormData } from '../..
 class Add extends Component {
     state = {
         form: {
-            platforms: {
+            platform: {
                 type: 'select',
                 options: [],
                 value: '',
@@ -17,7 +17,7 @@ class Add extends Component {
                 valid: false,
                 touched: false,
             },
-            games: {
+            game: {
                 type: 'autocomplete',
                 options: [],
                 value: '',
@@ -56,7 +56,7 @@ class Add extends Component {
                 valid: true,
                 touched: false,
             },
-            image: {
+            savefile: {
                 type: 'file',
                 value: '',
                 validation: {},
@@ -71,8 +71,8 @@ class Add extends Component {
         this.setState(getUpdatedFormState(this.state, event, inputID));
 
         // fetch games for selected platform
-        if (inputID === 'platforms') {
-            this.fetchOptionsForControl('games', '/api/games?filter[platform]=' + this.state.form.platforms.value);
+        if (inputID === 'platform') {
+            this.fetchOptionsForControl('game', '/api/games?filter[platform]=' + event.target.value);
         }
     }
 
@@ -94,7 +94,7 @@ class Add extends Component {
     }
 
     componentDidMount() {
-        this.fetchOptionsForControl('platforms', '/api/platforms');
+        this.fetchOptionsForControl('platform', '/api/platforms');
     }
 
     fetchOptionsForControl = (inputID, url) => {

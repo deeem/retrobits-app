@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import classes from './Auth.module.css';
-import Input from '../../components/UI/Input/Input';
+import FormControl from '../../components/UI/FormControl/FormControl';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
@@ -121,7 +121,7 @@ class Auth extends Component {
         }
 
         let form = formElementsArray.map(formElement => (
-            <Input
+            <FormControl
                 key={formElement.id}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}

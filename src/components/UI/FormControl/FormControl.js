@@ -1,21 +1,35 @@
 import React from 'react';
-import classes from './Input.module.css';
+import classes from './FormControl.module.css';
 import Autocomplete from './Autocomplete/Autocomplete';
 import Select from './Select/Select';
 
-const input = (props) => {
+const formControl = (props) => {
     let inputElement = null;
 
-    const inputClasses = [classes.InputElement];
+    const inputClasses = [classes.FormControlElement];
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
     }
 
     switch (props.elementType) {
 
-        case 'input':
-            inputElement = <input className={inputClasses.join(' ')}
-                {...props.elementConfig}
+        case 'text':
+            inputElement = <input type="text" className={inputClasses.join(' ')}
+                placeholder={props.placeholder}
+                value={props.value}
+                onChange={props.changed} />
+            break;
+
+        case 'email':
+            inputElement = <input type="email" className={inputClasses.join(' ')}
+                placeholder={props.placeholder}
+                value={props.value}
+                onChange={props.changed} />
+            break;
+
+
+        case 'password':
+            inputElement = <input type="password" className={inputClasses.join(' ')}
                 value={props.value}
                 onChange={props.changed} />
             break;
@@ -30,7 +44,7 @@ const input = (props) => {
         case 'select':
             inputElement = (
                 <Select
-                    options={props.elementConfig.options}
+                    options={props.options}
                     value={props.value}
                     changed={props.changed}
                     inputClasses={inputClasses}
@@ -40,7 +54,7 @@ const input = (props) => {
         case 'autocomplete':
             inputElement = (
                 <Autocomplete
-                    suggestions={props.elementConfig.options.map(option => option.displayValue)}
+                    suggestions={props.options.map(option => option.displayValue)}
                     value={props.value}
                     changed={props.changed}
                     inputClasses={inputClasses}
@@ -64,4 +78,4 @@ const input = (props) => {
     )
 }
 
-export default input;
+export default formControl;

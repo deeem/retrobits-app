@@ -51,12 +51,7 @@ export const setSelectControlOptions = (state, options, inputID) => {
         ...state.form[inputID]
     }
 
-    const updatedElementConfig = {
-        ...state.form[inputID].elementConfig
-    }
-
-    updatedElementConfig.options = options;
-    updatedElement.elementConfig = updatedElementConfig;
+    updatedElement.options = options;
     updatedForm[inputID] = updatedElement;
 
     return { form: updatedForm };

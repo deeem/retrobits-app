@@ -10,7 +10,7 @@ class Add extends Component {
     state = {
         form: {
             platforms: {
-                elementType: 'select',
+                type: 'select',
                 options: [],
                 value: '',
                 validation: {},
@@ -18,7 +18,7 @@ class Add extends Component {
                 touched: false,
             },
             games: {
-                elementType: 'autocomplete',
+                type: 'autocomplete',
                 options: [],
                 value: '',
                 validation: {},
@@ -26,7 +26,7 @@ class Add extends Component {
                 touched: false,
             },
             title: {
-                elementType: 'text',
+                type: 'text',
                 placeholder: 'Bit Title',
                 value: '',
                 validation: {
@@ -36,7 +36,7 @@ class Add extends Component {
                 touched: false,
             },
             description: {
-                elementType: 'textarea',                 
+                type: 'textarea',                 
                 placeholder: 'Description',
                 value: '',
                 validation: {
@@ -46,7 +46,7 @@ class Add extends Component {
                 touched: false,
             },
             players: {
-                elementType: 'select',
+                type: 'select',
                 options: [
                     { value: 1, displayValue: '1' },
                     { value: 2, displayValue: '2' },
@@ -115,7 +115,7 @@ class Add extends Component {
                 {formElementsArray.map(formElement => (
                     <FormControl
                         key={formElement.id}
-                        elementType={formElement.config.elementType}
+                        type={formElement.config.type}
                         options={formElement.config.options}
                         value={formElement.config.value}
                         changed={(event) => this.handleInputChange(event, formElement.id)}

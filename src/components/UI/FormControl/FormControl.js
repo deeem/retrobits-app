@@ -11,7 +11,7 @@ const formControl = (props) => {
         inputClasses.push(classes.Invalid);
     }
 
-    switch (props.elementType) {
+    switch (props.type) {
 
         case 'text':
             inputElement = <input type="text" className={inputClasses.join(' ')}

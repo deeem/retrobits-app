@@ -1,0 +1,24 @@
+.main-header {
+    background: #eff3f4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+}
+
+.nav-brand button {
+    width: 3rem;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+@media (min-width: 23rem) {
+
+    .nav-brand button {
+        display: none;
+    }
+}

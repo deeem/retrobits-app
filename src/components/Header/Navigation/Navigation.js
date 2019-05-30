@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import classes from './Navigation.module.css';
+import './Navigation.css';
 
 class Navigation extends Component {
 
     render() {
         return (
-            <ul className={classes.NavigationItems}>
-                <NavLink exact to='/' activeClassName={classes.active} className={classes.NavigationItem}>Browse</NavLink>
-                <NavLink exact to='/random' activeClassName={classes.active} className={classes.NavigationItem}>Random</NavLink>
-                {this.props.isAuthenticated ? <NavLink exact to='/add' activeClassName={classes.active} className={classes.NavigationItem}>Add</NavLink> : null}
-                {this.props.isAuthenticated
-                    ? <NavLink exact to="/logout" activeClassName={classes.active} className={classes.NavigationItem}>Logout</NavLink>
-                    : <NavLink exact to="/auth" activeClassName={classes.active} className={classes.NavigationItem}>Log In</NavLink>}
-            </ul>
+            <nav class="main-nav">
+                <ul class="main-nav__items">
+
+                    <NavLink exact to="/" className="main-nav__item" activeClassName="main-nav__item--active">Explore</NavLink>
+                    <NavLink exact to="/random" className="main-nav__item" activeClassName="main-nav__item--active">Random</NavLink>
+                    {this.props.isAuthenticated ? <NavLink exact to='/add' className="main-nav__item" activeClassName="main-nav__item--active">Add</NavLink> : null}
+                    {this.props.isAuthenticated
+                        ? <NavLink exact to="/logout" className="main-nav__item" activeClassName="main-nav__item--active">Logout</NavLink>
+                        : <NavLink exact to="/auth" className="main-nav__item" activeClassName="main-nav__item--active">Log In</NavLink>}
+
+                </ul>
+            </nav>
         )
     }
 }

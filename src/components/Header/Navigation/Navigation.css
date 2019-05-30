@@ -1,0 +1,34 @@
+.main-nav {
+    display: none;
+}
+
+@media (min-width: 23rem) {
+
+    .nav-brand button {
+        display: none;
+    }
+
+    .main-nav {
+        display: block;
+    }
+
+    .main-nav__items {
+        list-style: none;
+        display: flex;
+    }
+    
+    .main-nav__item {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #a8850f;
+        text-decoration: none;
+        font-variant: all-small-caps;
+        line-height: 1rem;
+        padding-bottom: .3rem;
+        margin: 0 1rem;
+    }
+    
+    .main-nav__item--active {
+        border-bottom: 4px solid rgba(255, 193, 7, .46);
+    }
+}

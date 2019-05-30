@@ -1,15 +1,21 @@
 import React from 'react';
-import classes from './Header.module.css';
+import './Header.css';
 import Navigation from './Navigation/Navigation';
-import siteLogo from '../../assets/images/iconfinder_space-invader_2981852.svg';
+import logoIcon from '../../assets/images/iconfinder_space-invader_2981852.svg';
+import menuIcon from '../../assets/images/iconfinder_menu_309053.svg';
 
 const Header = (props) => (
-    <div className={classes.Header}>
-        <div>
-            <img src={siteLogo} alt="RetroBits Logo" />
+    <header class="main-header">
+        <div class="nav-brand">
+            <button class="toggle-button">
+                <img src={menuIcon} />
+            </button>
+            <a href="#">
+                <img src={logoIcon} />
+            </a>
         </div>
         <Navigation />
-    </div>
+    </header>
 )
 
 export default Header;

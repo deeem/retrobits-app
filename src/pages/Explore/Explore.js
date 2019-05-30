@@ -168,7 +168,7 @@ class Explore extends Component {
             : null;
 
         return (
-            <div className={classes.Explore}>
+            <main className={classes.Explore}>
                 <BitsFilters />
 
                 <div className={classes.BitListWrapper}>
@@ -188,7 +188,7 @@ class Explore extends Component {
                 </div>
 
                 {modal}
-            </div>
+            </main>
         );
     }
 }

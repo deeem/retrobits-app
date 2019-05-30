@@ -1,12 +1,12 @@
 import React from 'react';
-import Toolbar from '../Toolbar/Toolbar';
+import Header from '../Header/Header';
 
 const layout = (props) => (
     <>
-        <Toolbar/>
-        <main>
+        <Header/>
+        <>
             {props.children}
-        </main>
+        </>
     </>
 );
 

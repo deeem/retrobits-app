@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import classes from './Explore.module.css';
+import './Explore.css';
 import axios from '../../axios-retrobits';
 import BitList from '../../components/Bits/BitList/BitList'
 import BitInfo from '../../components/Bits/BitInfo/BitInfo'
 import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import BitsFilterToggler from '../../components/Bits/BitsFilters/BitsFilterToggler/BitsFilterToggler';
 import BitsFilters from '../../components/Bits/BitsFilters/BitsFilters'
 import BitsPaginator from '../../components/Bits/BitsPaginator/BitsPaginator'
 import withErrorHandler from '../../components/UI/withErrorHandler/withErrorHanlder';
@@ -168,11 +169,12 @@ class Explore extends Component {
             : null;
 
         return (
-            <main className={classes.Explore}>
+            <main className="main-explore">
+                <BitsFilterToggler/>
                 <BitsFilters />
 
-                <div className={classes.BitListWrapper}>
-                    <div className={classes.PaginatorContainer}>
+                <div className="">
+                    <div className="">
                         <BitsPaginator
                             current={this.state.pagination.current}
                             clickedFirst={() => this.handlePaginate(this.state.pagination.first)}
@@ -181,7 +183,7 @@ class Explore extends Component {
                             clickedPrev={() => this.handlePaginate(this.state.pagination.prev)}
                         />
                     </div>
-                    <div className={classes.BitListContainer}>
+                    <div className="">
                         {spinner}
                         {list}
                     </div>

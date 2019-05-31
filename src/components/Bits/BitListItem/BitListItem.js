@@ -1,13 +1,27 @@
 import React from 'react';
-import classes from './BitListItem.module.css';
+import './BitListItem.css';
 
 const BitListItem = (props) => {
     return (
-        <div className={classes.BitListItem}>
-            <h5>{props.data.game.title}</h5>
-            <p>{props.data.title}</p>
+
+
+        <div class="bit">
+        <div class="bit__image"></div>
+
+            <h3 class="bit-info__bit-title">{props.data.title}</h3>
+            <p class="bit-info__game-title">{props.data.game.title}</p>
+            <span class="bit-info__bit-difficult">normal</span>
+            <span class="bit-info__bit-author">normal</span>
             <button onClick={props.click}>Show Bit</button>
         </div>
+
+
+
+        // <div className={classes.BitListItem}>
+        //     <h5>{props.data.game.title}</h5>
+        //     <p>{props.data.title}</p>
+        //     <button onClick={props.click}>Show Bit</button>
+        // </div>
     )
 }
 

@@ -148,7 +148,7 @@ class Explore extends Component {
     }
 
     handleBitFilterToggle = () => {
-        this.setState({isFilterVisible: !this.state.isFilterVisible});
+        this.setState({ isFilterVisible: !this.state.isFilterVisible });
     }
 
     render() {
@@ -175,25 +175,20 @@ class Explore extends Component {
 
         return (
             <main className="main-explore">
-                <BitsFilterToggler clicked={this.handleBitFilterToggle}/>
-                <BitsFilters visible={this.state.isFilterVisible}/>
+                <BitsFilterToggler clicked={this.handleBitFilterToggle} />
+                <BitsFilters visible={this.state.isFilterVisible} />
 
-                <div className="">
-                    <div className="">
-                        <BitsPaginator
-                            current={this.state.pagination.current}
-                            clickedFirst={() => this.handlePaginate(this.state.pagination.first)}
-                            clickedLast={() => this.handlePaginate(this.state.pagination.last)}
-                            clickedNext={() => this.handlePaginate(this.state.pagination.next)}
-                            clickedPrev={() => this.handlePaginate(this.state.pagination.prev)}
-                        />
-                    </div>
-                    <div className="">
-                        {spinner}
-                        {list}
-                    </div>
-                </div>
+                {spinner}
+                {list}
 
+                <BitsPaginator
+                    current={this.state.pagination.current}
+                    clickedFirst={() => this.handlePaginate(this.state.pagination.first)}
+                    clickedLast={() => this.handlePaginate(this.state.pagination.last)}
+                    clickedNext={() => this.handlePaginate(this.state.pagination.next)}
+                    clickedPrev={() => this.handlePaginate(this.state.pagination.prev)}
+                />
+                
                 {modal}
             </main>
         );

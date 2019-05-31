@@ -1,0 +1,11 @@
+.bit {
+    border: 1px solid blueviolet;
+}
+
+.bit__image {
+    background-image: url(../../../assets/images/default-bit.png);
+    background-position: center;
+    background-size: cover;
+    height: 21rem;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,6 @@
+.bits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    justify-content: center;
+    grid-gap: 1rem;
+}

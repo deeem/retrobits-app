@@ -1,6 +1,6 @@
 import React from 'react';
 import BitListItem from '../BitListItem/BitListItem';
-import classes from './BitList.module.css';
+import './BitList.css';
 
 const BitList = (props) => {
     const list = props.bits.map(bit =>
@@ -11,11 +11,9 @@ const BitList = (props) => {
     );
 
     return (
-        <div>
-            <div className={classes.BitList}>
-                {list}
-            </div>
-        </div>
+        <section className="bits">
+            {list}
+        </section>
     )
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './BitsFilters.module.css';
+import './BitsFilters.css';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -7,30 +7,63 @@ import * as actions from '../../../store/actions/index';
 class bitsFilters extends Component {
 
     render() {
+
+        let containerClasses = ['filter-container'];
+        if (this.props.visible) {
+            containerClasses.push('open');
+        }
+
         return (
-            <div className={classes.BitsFilters}>
-            
-                <h2>Players</h2>
-                <Checkbox name="players1" value="1" changed={() => this.props.onToggleFilter('players_1')}/>
-                <Checkbox name="players2" value="2" changed={() => this.props.onToggleFilter('players_2')}/>
-    
-                <h2>Difficult</h2>
-                <Checkbox name="difficult_easy" value="easy" changed={() => this.props.onToggleFilter('difficult_easy')}/>
-                <Checkbox name="difficult_normal" value="normal" changed={() => this.props.onToggleFilter('difficult_normal')}/>
-                <Checkbox name="difficult_hard" value="hard" changed={() => this.props.onToggleFilter('difficult_hard')}/>
-    
-                <h2>Rating</h2>
-                <Checkbox name="rating_1" value="1" changed={() => this.props.onToggleFilter('rating_1')}/>
-                <Checkbox name="rating_2" value="2" changed={() => this.props.onToggleFilter('rating_2')}/>
-                <Checkbox name="rating_3" value="3" changed={() => this.props.onToggleFilter('rating_3')}/>
-                <Checkbox name="rating_4" value="4" changed={() => this.props.onToggleFilter('rating_4')}/>
-                <Checkbox name="rating_5" value="5" changed={() => this.props.onToggleFilter('rating_5')}/>
-    
-                <h2>Order by</h2>
-                <input type="checkbox" value="" />recently added<br />
-                <input type="checkbox" value="" />most downloaded<br />
-    
-            </div>
+            <>
+                <div className={containerClasses}>
+
+                    <div class="filter-groups">
+                        <div class="filter-group">
+                            <p class="filter-group__title">Platform</p>
+                            <ul class="filter-group__items">
+                                <li class="filter-group__item"><label><input type="checkbox" />ZX-Spectrum</label></li>
+                                <li class="filter-group__item"><label><input type="checkbox" />Nintento</label></li>
+                                <li class="filter-group__item"><label><input type="checkbox" />Mega Drive</label></li>
+                                <li class="filter-group__item"><label><input type="checkbox" />Super Nintento</label></li>
+                            </ul>
+                        </div>
+                        <div class="filter-group">
+                            <p class="filter-group__title">Players</p>
+                            <ul class="filter-group__items">
+                                <li class="filter-group__item">
+                                    <Checkbox name="players1" value="1" changed={() => this.props.onToggleFilter('players_1')} />
+                                </li>
+                                <li class="filter-group__item">
+                                    <Checkbox name="players2" value="2" changed={() => this.props.onToggleFilter('players_2')} />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filter-group">
+                            <p class="filter-group__title">Difficult</p>
+                            <ul class="filter-group__items">
+                                <li class="filter-group__item">
+                                    <Checkbox name="difficult_easy" value="easy" changed={() => this.props.onToggleFilter('difficult_easy')} />
+                                </li>
+                                <li class="filter-group__item">
+                                    <Checkbox name="difficult_normal" value="normal" changed={() => this.props.onToggleFilter('difficult_normal')} />
+                                </li>
+                                <li class="filter-group__item">
+                                    <Checkbox name="difficult_hard" value="hard" changed={() => this.props.onToggleFilter('difficult_hard')} />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filter-group">
+                            <p class="filter-group__title">Sorting</p>
+                            <ul class="filter-group__items">
+                                <li class="filter-group__item"><label><input type="radio" name="sorting" />newest</label></li>
+                                <li class="filter-group__item"><label><input type="radio" name="sorting" />popular</label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </>
         );
     }
 };

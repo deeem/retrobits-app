@@ -20,6 +20,7 @@ class Explore extends Component {
         loading: false,
         url: '/api/bits',
         pagination: {},
+        isFilterVisible: false,
     }
 
     componentDidMount() {
@@ -146,6 +147,10 @@ class Explore extends Component {
         this.setState({ bit: null });
     }
 
+    handleBitFilterToggle = () => {
+        this.setState({isFilterVisible: !this.state.isFilterVisible});
+    }
+
     render() {
 
         let spinner = this.state.loading
@@ -170,8 +175,8 @@ class Explore extends Component {
 
         return (
             <main className="main-explore">
-                <BitsFilterToggler/>
-                <BitsFilters />
+                <BitsFilterToggler clicked={this.handleBitFilterToggle}/>
+                <BitsFilters visible={this.state.isFilterVisible}/>
 
                 <div className="">
                     <div className="">

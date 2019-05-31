@@ -7,9 +7,9 @@ const BitsFilterToggler = (props) => {
     return (
 
         <div className="filter-bar">
-            <button className="filter-toggler">
-                <img src={filterIcon}/>
-                </button>
+            <button className="filter-toggler" onClick={props.clicked}>
+                <img src={filterIcon} />
+            </button>
         </div>
     )
 }

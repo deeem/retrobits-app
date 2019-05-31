@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
+import MobileNav from '../MobileNav/MobileNav';
 
-const layout = (props) => (
-    <>
-        <Header/>
-        <>
-            {props.children}
-        </>
-    </>
-);
+class Layout extends Component {
+    state = {
+        showMobileNav: false,
+    }
 
-export default layout;
+    handleToggleMobileNav = () => {
+        this.setState({ showMobileNav: !this.state.showMobileNav });
+    }
+
+    render() {
+        return (
+            <>
+                <Header
+                    isMobileNavVisible={this.state.showMobileNav}
+                    toggleMobileNav={this.handleToggleMobileNav}
+                />
+                <MobileNav
+                    visible={this.state.showMobileNav}
+                    toggled={this.handleToggleMobileNav}
+                />
+                <>
+                    {this.props.children}
+                </>
+            </>
+        )
+    }
+}
+
+export default Layout;

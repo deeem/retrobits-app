@@ -7,7 +7,10 @@ import menuIcon from '../../assets/images/iconfinder_menu_309053.svg';
 const Header = (props) => (
     <header class="main-header">
         <div class="nav-brand">
-            <button class="toggle-button">
+            <button
+                class="toggle-button"
+                onClick={props.toggleMobileNav}
+            >
                 <img src={menuIcon} />
             </button>
             <a href="#">

@@ -119,6 +119,7 @@ class Explore extends Component {
                     prev: response.data.links.prev,
                 }
             });
+            window.scrollTo(0, 0);
         }).catch(error => {
             this.setState({ loading: false });
         })
@@ -188,7 +189,7 @@ class Explore extends Component {
                     clickedNext={() => this.handlePaginate(this.state.pagination.next)}
                     clickedPrev={() => this.handlePaginate(this.state.pagination.prev)}
                 />
-                
+
                 {modal}
             </main>
         );

@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './Checkbox.module.css';
+import classes from './Radio.module.css';
 
-const Checkbox = (props) => (
+const Radio = (props) => (
     <>
         <label className={classes.checkbox}>
             <input
-                type="checkbox"
+                type="radio"
                 name={props.name}
                 value={props.value}
                 onChange={props.changed}
@@ -15,4 +15,4 @@ const Checkbox = (props) => (
     </>
 );
 
-export default Checkbox;
+export default Radio;

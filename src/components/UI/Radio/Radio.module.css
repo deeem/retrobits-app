@@ -1,5 +1,6 @@
-.checkbox input[type="checkbox"] {
+.radio input[type="radio"] {
     border: 1px solid #ccc;
+    border-radius: 50%;
     background: white;
     width: 1rem;
     height: 1rem;
@@ -9,11 +10,11 @@
     appearance: none;
 }
 
-.checkbox input:checked {
+.radio input:checked {
     background: #afdfff;
     border: #6192ee;
 }
 
-.checkbox input:focus {
+.radio input:focus {
     outline: none;
 }

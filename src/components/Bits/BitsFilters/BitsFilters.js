@@ -65,10 +65,10 @@ class bitsFilters extends Component {
                             <p class="filter-group__title">Sorting</p>
                             <ul class="filter-group__items">
                                 <li class="filter-group__item">
-                                    <Radio label="newest" name="sorting" changed={() => this.props.onToggleFilter('sorting_latest')} />
+                                    <Radio label="newest" name="sorting" changed={() => this.props.onToggleSortingRadio('latest')} />
                                 </li>
                                 <li class="filter-group__item">
-                                    <Radio label="rating" name="sorting" changed={() => this.props.onToggleFilter('sorting_rating')} />
+                                    <Radio label="rating" name="sorting" changed={() => this.props.onToggleSortingRadio('rating')} />
                                 </li>
                             </ul>
                         </div>
@@ -97,14 +97,14 @@ const mapStateToProps = state => {
         rating_3: state.bitsFilter.rating_3,
         rating_4: state.bitsFilter.rating_4,
         rating_5: state.bitsFilter.rating_5,
-        sorting_latest: state.bitsFilter.sorting_latest,
-        sorting_rating: state.bitsFilter.sorting_rating,
+        sorting: state.bitsFilter.sorting,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onToggleFilter: (filter) => dispatch(actions.toggleFilter(filter)),
+        onToggleSortingRadio: (value) => dispatch(actions.toggleSortingRadio(value)),
     }
 }
 

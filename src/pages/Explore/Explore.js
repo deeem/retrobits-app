@@ -43,7 +43,8 @@ class Explore extends Component {
             || (prevProps.platform_spectrum !== undefined && prevProps.platform_spectrum !== this.props.platform_spectrum)
             || (prevProps.platform_nes !== undefined && prevProps.platform_nes !== this.props.platform_nes)
             || (prevProps.platform_snes !== undefined && prevProps.platform_snes !== this.props.platform_snes)
-            || (prevProps.platform_sega !== undefined && prevProps.platform_sega !== this.props.platform_sega);
+            || (prevProps.platform_sega !== undefined && prevProps.platform_sega !== this.props.platform_sega)
+            || (prevProps.sorting !== undefined && prevProps.sorting !== this.props.sorting);
 
         if (shouldFetch) {
             this.fetchBits();
@@ -119,7 +120,8 @@ class Explore extends Component {
 
         return {
             ...filters,
-            ...params
+            ...params,
+            sort: this.props.sorting,
         }
     }
 
@@ -233,8 +235,7 @@ const mapStateToProps = state => {
         rating_3: state.bitsFilter.rating_3,
         rating_4: state.bitsFilter.rating_4,
         rating_5: state.bitsFilter.rating_5,
-        sorting_latest: false,
-        sorting_rating: false,
+        sorting: state.bitsFilter.sorting,
     }
 }
 

@@ -6,3 +6,10 @@ export const toggleFilter = (filter) => {
         filter: filter,
     }
 }
+
+export const toggleSortingRadio = (value) => {
+    return {
+        type: actionTypes.TOGGLE_SORTING_RADIO,
+        value: value,
+    }
+}

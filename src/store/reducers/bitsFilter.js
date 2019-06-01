@@ -15,8 +15,7 @@ const initialState = {
     rating_3: false,
     rating_4: false,
     rating_5: false,
-    sorting_latest: false,
-    sorting_rating: false,
+    sorting: 'latest',
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +25,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 [action.filter]: !state[action.filter]
             }
+
+            case actionTypes.TOGGLE_SORTING_RADIO:
+                return {
+                    ...state,
+                    sorting: action.value,
+                }
 
         default:
             return state;

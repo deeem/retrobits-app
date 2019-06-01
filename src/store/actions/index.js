@@ -1,5 +1,6 @@
 export {
     toggleFilter,
+    toggleSortingRadio,
 } from './bitsFilter';
 
 export {

@@ -1,4 +1,5 @@
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const TOGGLE_SORTING_RADIO = 'TOGGLE_SORTING_RADIO';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

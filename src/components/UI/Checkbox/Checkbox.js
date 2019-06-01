@@ -9,6 +9,7 @@ const Checkbox = (props) => (
                 name={props.name}
                 value={props.value}
                 onChange={props.changed}
+                checked={props.isChecked}
             />
             {props.value}
         </label>

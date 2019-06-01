@@ -39,7 +39,11 @@ class Explore extends Component {
             || (prevProps.rating_2 !== undefined && prevProps.rating_2 !== this.props.rating_2)
             || (prevProps.rating_3 !== undefined && prevProps.rating_3 !== this.props.rating_3)
             || (prevProps.rating_4 !== undefined && prevProps.rating_4 !== this.props.rating_4)
-            || (prevProps.rating_5 !== undefined && prevProps.rating_5 !== this.props.rating_5);
+            || (prevProps.rating_5 !== undefined && prevProps.rating_5 !== this.props.rating_5)
+            || (prevProps.platform_spectrum !== undefined && prevProps.platform_spectrum !== this.props.platform_spectrum)
+            || (prevProps.platform_nes !== undefined && prevProps.platform_nes !== this.props.platform_nes)
+            || (prevProps.platform_snes !== undefined && prevProps.platform_snes !== this.props.platform_snes)
+            || (prevProps.platform_sega !== undefined && prevProps.platform_sega !== this.props.platform_sega);
 
         if (shouldFetch) {
             this.fetchBits();
@@ -47,10 +51,23 @@ class Explore extends Component {
     }
 
     prepareFetchFilterParams = (params) => {
+        const platforms = [];
         const players = [];
         const difficults = [];
         const ratings = [];
 
+        if (this.props.platform_spectrum) {
+            platforms.push('spectrum');
+        }
+        if (this.props.platform_nes) {
+            platforms.push('nes');
+        }
+        if (this.props.platform_snes) {
+            platforms.push('snes');
+        }
+        if (this.props.platform_sega) {
+            platforms.push('sega');
+        }
         if (this.props.players_1) {
             players.push(1);
         }
@@ -83,6 +100,10 @@ class Explore extends Component {
         }
 
         let filters = {};
+
+        if (platforms.length) {
+            filters['filter[platform]'] = platforms.join(',');
+        }
 
         if (players.length) {
             filters['filter[players]'] = players.join(',');
@@ -198,6 +219,10 @@ class Explore extends Component {
 
 const mapStateToProps = state => {
     return {
+        platform_spectrum: state.bitsFilter.platform_spectrum,
+        platform_nes: state.bitsFilter.platform_nes,
+        platform_snes: state.bitsFilter.platform_snes,
+        platform_sega: state.bitsFilter.platform_sega,
         players_1: state.bitsFilter.players_1,
         players_2: state.bitsFilter.players_2,
         difficult_easy: state.bitsFilter.difficult_easy,

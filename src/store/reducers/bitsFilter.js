@@ -1,6 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+    platform_spectrum: false,
+    platform_nes: false,
+    platform_snes: false,
+    platform_sega: false,
     players_1: false,
     players_2: false,
     difficult_easy: false,

@@ -15,6 +15,8 @@ const initialState = {
     rating_3: false,
     rating_4: false,
     rating_5: false,
+    sorting_latest: false,
+    sorting_rating: false,
 };
 
 const reducer = (state = initialState, action) => {

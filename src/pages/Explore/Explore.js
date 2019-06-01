@@ -233,6 +233,8 @@ const mapStateToProps = state => {
         rating_3: state.bitsFilter.rating_3,
         rating_4: state.bitsFilter.rating_4,
         rating_5: state.bitsFilter.rating_5,
+        sorting_latest: false,
+        sorting_rating: false,
     }
 }
 

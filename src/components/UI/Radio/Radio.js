@@ -3,14 +3,13 @@ import classes from './Radio.module.css';
 
 const Radio = (props) => (
     <>
-        <label className={classes.checkbox}>
+        <label className={classes.radio}>
             <input
                 type="radio"
                 name={props.name}
-                value={props.value}
                 onChange={props.changed}
             />
-            {props.value}
+            {props.label}
         </label>
     </>
 );

@@ -1,0 +1,33 @@
+.bitinfo {
+
+}
+
+.bitinfo__image {
+    width: 100%;
+}
+
+.bitinfo__title {
+    text-align: center;
+}
+
+section {
+    margin: 2rem 0;
+}
+
+.bitinfo__bit-description {
+    
+}
+
+.bitinfo__bit-description h3 {
+    color: #009688;
+    font-variant: all-small-caps;
+    letter-spacing: .13rem;
+}
+
+.bitinfo__bit-description p {
+
+}
+
+.bitinfo__badges {
+    display: flex;
+}

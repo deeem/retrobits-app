@@ -16,14 +16,11 @@ class Modal extends Component {
         return (
             <>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
-                <div
-                    className={classes.Modal}
-                    style={{
-                        transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                        opacity: this.props.show ? '1' : '0'
-                    }}>
-                    {this.props.children}
-                </div>
+                {this.props.show && <div className={classes['modal-container']} onClick={this.props.modalClosed}>
+                    <div className={classes.modal}>
+                        {this.props.children}
+                    </div>
+                </div>}
             </>
         );
     }

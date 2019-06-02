@@ -1,0 +1,23 @@
+.badge {
+    display: inline-flex;
+    padding: .4rem;
+    border-radius: 2rem;
+    border: 1px solid black;
+    align-items: center;
+}
+
+.badge__image {
+    border: 1px solid black;
+    border-radius: 2rem;
+    padding: .3rem;
+    background: white;
+    margin-right: .7rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.badge__text {
+    font-weight: bold;
+    color: #676767;
+    padding-right: 1rem;
+}

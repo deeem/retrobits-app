@@ -1,11 +1,16 @@
 .bit {
-    border: 1px solid blueviolet;
+    background: #607d8b;
+    color: white;
 }
 
 .bit__image {
-    background-image: url(../../../assets/images/default-bit.png);
-    background-position: center;
-    background-size: cover;
-    height: 21rem;
-    background-repeat: no-repeat;
+    height: 13rem;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bit-info__game-platform {
+    background: white;
+    color: black;
 }

@@ -16,7 +16,7 @@ class Modal extends Component {
         return (
             <>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
-                {this.props.show && <div className={classes['modal-container']} onClick={this.props.modalClosed}>
+                {this.props.show && <div className={classes['modal-container']}>
                     <div className={classes.modal}>
                         {this.props.children}
                     </div>

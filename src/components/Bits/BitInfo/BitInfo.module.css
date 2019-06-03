@@ -1,3 +1,8 @@
+.bitinfo {
+    display: flex;
+    flex-direction: column;
+}
+
 .bitinfo__image {
     width: 100%;
 }
@@ -19,4 +24,12 @@ section {
 .bitinfo__badges {
     display: flex;
     justify-content: space-evenly;
+}
+
+.gameinfo__toggler {
+
+}
+
+.gameinfo__section {
+
 }

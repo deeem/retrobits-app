@@ -14,8 +14,10 @@
     background-color: white;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px black;
-    /* padding: 1rem; */
     width: 21rem;
+    height: 38rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 @media (min-width: 23rem) {

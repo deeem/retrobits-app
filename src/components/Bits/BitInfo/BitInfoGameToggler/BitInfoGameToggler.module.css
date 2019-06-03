@@ -1,0 +1,17 @@
+.game-toggler {
+    display: flex;
+    background: #212529;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+.game-toggler__title {
+    font-variant: small-caps;
+}
+
+.game-toggler__icon {
+    height: 2rem;
+    cursor: pointer;
+}

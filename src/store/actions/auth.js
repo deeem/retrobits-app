@@ -30,9 +30,9 @@ export const auth = (name, email, password, isSignup) => {
             password: password,
         };
 
-        let url = '/api/register';
+        let url = 'register';
         if (!isSignup) {
-            url = '/api/login';
+            url = 'login';
         }
 
         axios.post(url, authData)

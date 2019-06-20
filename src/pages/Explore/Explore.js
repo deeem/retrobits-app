@@ -18,7 +18,7 @@ class Explore extends Component {
         bits: null,
         bit: null,
         loading: false,
-        url: '/api/bits',
+        url: '/api/app/bits',
         pagination: {},
         isFilterVisible: false,
     }
@@ -128,7 +128,7 @@ class Explore extends Component {
     fetchBits = (params) => {
         this.setState({ loading: true });
 
-        axios.get('/api/bits', {
+        axios.get('bits', {
             params: this.prepareFetchFilterParams(params)
         }).then(response => {
             this.setState({
@@ -158,7 +158,7 @@ class Explore extends Component {
     showBitModalHandler = (id) => {
         this.setState({ loading: true });
 
-        axios.get('/api/bits/' + id)
+        axios.get('bits/' + id)
             .then(response => {
                 this.setState({ bit: response.data.data, loading: false })
             })

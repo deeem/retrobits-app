@@ -18,7 +18,7 @@ class Bit extends Component {
     componentDidMount() {
         const id = new URLSearchParams(this.props.location.search).get('id')
 
-        axios.get('/api/bits/' + id)
+        axios.get('bits/' + id)
             .then(response => {
                 this.setState({ bit: response.data.data });
                 console.log(response.data.data);

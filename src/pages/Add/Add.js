@@ -72,7 +72,7 @@ class Add extends Component {
 
         // fetch games for selected platform
         if (inputID === 'platform') {
-            this.fetchOptionsForControl('game', '/api/games?filter[platform]=' + event.target.value);
+            this.fetchOptionsForControl('game', 'games?filter[platform]=' + event.target.value);
         }
     }
 
@@ -81,10 +81,7 @@ class Add extends Component {
 
         const formData = getFormData(this.state);
 
-        // axios post request goes here...
-        console.log(formData);
-
-        axios.post('/api/bits', formData)
+        axios.post('bits', formData)
             .then(response => {
                 console.log(response);
             })
@@ -94,7 +91,7 @@ class Add extends Component {
     }
 
     componentDidMount() {
-        this.fetchOptionsForControl('platform', '/api/platforms');
+        this.fetchOptionsForControl('platform', 'platforms');
     }
 
     fetchOptionsForControl = (inputID, url) => {

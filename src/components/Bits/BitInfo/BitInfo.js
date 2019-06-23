@@ -26,7 +26,7 @@ class BitInfo extends Component {
         return (
             <div className={classes['bitinfo']}>
 
-                <img className={classes['bitinfo__image']} src={unescape(this.props.bit.game.image)} />
+                <img className={classes['bitinfo__image']} src={unescape(this.props.bit.game.images[0].url)} />
                 <BitInfoGameToggler title={this.props.bit.game.title} clicked={this.handleToggleGameInfo} />
 
 
